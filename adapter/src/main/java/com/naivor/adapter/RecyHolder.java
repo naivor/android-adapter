@@ -6,7 +6,7 @@ import android.view.View;
 
 /**
  * recyclerView的viewholder基类
- * <p/>
+ * <p>
  * Created by tianlai on 16-7-16.
  */
 public abstract class RecyHolder<T> extends RecyclerView.ViewHolder implements HolderOperator<T>{
