@@ -36,7 +36,7 @@ public class TestRecyAdapter extends RecyAdapter<SimpleItem> {
         return R.layout.list_item_txt;
     }
 
-    static class SHolder extends RecyHolder<SimpleItem> implements View.OnClickListener{
+    static class SHolder extends RecyHolder<SimpleItem> {
 
         @Bind(R.id.tv_text)
         TextView tvText;
