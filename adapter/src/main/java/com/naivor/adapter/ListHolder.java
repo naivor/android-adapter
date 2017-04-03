@@ -11,7 +11,7 @@ import android.widget.CompoundButton;
  * Created by naivor on 16-4-12.
  */
 public abstract class ListHolder<T> implements HolderOperator<T>, View.OnClickListener,
-        View.OnFocusChangeListener, CompoundButton.OnCheckedChangeListener{
+        View.OnFocusChangeListener, View.OnLongClickListener, CompoundButton.OnCheckedChangeListener{
     protected  final String TAG=this.getClass().getSimpleName();
 
     protected Context context;
@@ -88,6 +88,14 @@ public abstract class ListHolder<T> implements HolderOperator<T>, View.OnClickLi
     }
 
     @Override
+    public boolean onLongClick(View v) {
+        if (innerListener != null) {
+            innerListener.onLongClick(v, itemData, position);
+        }
+        return true;
+    }
+
+    @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         if (innerListener != null) {
             innerListener.onCheckedChanged(buttonView, isChecked, itemData, position);
@@ -110,6 +118,17 @@ public abstract class ListHolder<T> implements HolderOperator<T>, View.OnClickLi
         }
 
         v.setOnClickListener(this);
+    }
+
+    /**
+     * 注册LongClick事件
+     */
+    protected void registerLongClick(View v) {
+        if (v == null) {
+            throw new NullPointerException("View can't be null");
+        }
+
+        v.setOnLongClickListener(this);
     }
 
     /**

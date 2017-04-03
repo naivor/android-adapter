@@ -86,7 +86,7 @@ public class MultiRecyAdapter extends RecyAdapter<SimpleItem> {
 
             ButterKnife.bind(this, itemView);
 
-            registerClick(itemView);
+            registerLongClick(itemView);
         }
 
         @Override

@@ -110,6 +110,8 @@ public interface AdapterOperator<T> {
     abstract class InnerListener<T> {
         public void onClick(View view, T itemData, int postition) {
         }
+        public void onLongClick(View view, T itemData, int postition) {
+        }
 
         public void onFocusChange(View view, boolean hasFocus, T itemData, int postition) {
         }

@@ -52,6 +52,6 @@
         android:layout_marginRight="10dp"
         android:layout_width="match_parent"
         android:layout_height="60sp"
-        android:text="Recycler   HeaderFooter" />
+        android:text="Multiple   Items" />
 
 </LinearLayout>

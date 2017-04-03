@@ -47,6 +47,11 @@ public class MultiItemActivity extends AppCompatActivity {
             public void onClick(View view, SimpleItem itemData, int postition) {
                 Toast.makeText(getApplicationContext(),"我是编号："+postition+"  "+itemData.getContent(),Toast.LENGTH_SHORT).show();
             }
+
+            @Override
+            public void onLongClick(View view, SimpleItem itemData, int postition) {
+                Toast.makeText(getApplicationContext(),"我是编号："+postition+"  "+itemData.getContent()+"我被长按了",Toast.LENGTH_SHORT).show();
+            }
         });
 
         rvContent.setLayoutManager(new LinearLayoutManager(getApplicationContext()));

@@ -11,7 +11,7 @@ import android.widget.CompoundButton;
  * Created by tianlai on 16-7-16.
  */
 public abstract class RecyHolder<T> extends RecyclerView.ViewHolder implements HolderOperator<T>,
-        View.OnClickListener, View.OnFocusChangeListener, CompoundButton.OnCheckedChangeListener {
+        View.OnClickListener, View.OnLongClickListener, View.OnFocusChangeListener, CompoundButton.OnCheckedChangeListener {
     protected final String TAG = this.getClass().getSimpleName();
 
     protected T itemData;
@@ -88,6 +88,14 @@ public abstract class RecyHolder<T> extends RecyclerView.ViewHolder implements H
     }
 
     @Override
+    public boolean onLongClick(View v) {
+        if (innerListener != null) {
+            innerListener.onLongClick(v, itemData, position);
+        }
+        return true;
+    }
+
+    @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         if (innerListener != null) {
             innerListener.onCheckedChanged(buttonView, isChecked, itemData, position);
@@ -110,6 +118,16 @@ public abstract class RecyHolder<T> extends RecyclerView.ViewHolder implements H
         }
 
         v.setOnClickListener(this);
+    }
+    /**
+     * 注册LongClick事件
+     */
+    protected void registerLongClick(View v) {
+        if (v == null) {
+            throw new NullPointerException("View can't be null");
+        }
+
+        v.setOnLongClickListener(this);
     }
 
     /**
