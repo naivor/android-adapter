@@ -3,9 +3,9 @@
 简单易用的Android Adapter,包括RecyAdapter和ListAdapter,对于RecyclerView 和 AbsListView 提供一致的Adapter操作风格
 
 ### 现在可以使用在线库：
-```
-compile 'com.naivor:adapter:1.0.0'
 
+```
+compile 'com.naivor:adapter:1.0.1'
 ```
 RecyAdapter和ListAdapter都实现了AdapterOperator接口，实现了对Adapter数据的添加，删除，置换，清空的操作，如图
 
@@ -135,3 +135,60 @@ GridView 使用效果：
 
 
 ![img](https://github.com/naivor/Android-Adapter/blob/master/docs/Adapter%20GridView.gif)
+
+### 3. For Multiple Items
+
+定义不同的ViewHolder:
+```
+static class AHolder extends RecyHolder<SimpleItem> implements View.OnClickListener {...}
+static class BHolder extends RecyHolder<SimpleItem> implements View.OnClickListener {...}
+static class SHolder extends RecyHolder<SimpleItem> implements View.OnClickListener {...}
+```
+对不同的ViewType进行处理：
+
+```
+ @Override
+    public RecyclerView.ViewHolder createHolder(ViewGroup parent, int viewType) {
+        View view = createView(parent, viewType);
+
+        switch (viewType) {
+            case SimpleItem.Type.A:
+                return new AHolder(view);
+            case SimpleItem.Type.B:
+                return new BHolder(view);
+            case SimpleItem.Type.S:
+                return new SHolder(view);
+            default:
+                return null;
+        }
+    }
+
+    @Override
+    public int getAdapterItemType(int position) {
+        return getItem(position).getType();
+    }
+
+    /**
+     * 获取布局资源
+     *
+     * @param viewType
+     * @return
+     */
+    @Override
+    public int getLayoutRes(int viewType) {
+        switch (viewType) {
+            case SimpleItem.Type.A:
+                return R.layout.list_item_txt_a;
+            case SimpleItem.Type.B:
+                return R.layout.list_item_txt_b;
+            case SimpleItem.Type.S:
+                return R.layout.list_item_txt;
+            default:
+                return 0;
+        }
+
+    }
+```
+效果：
+
+![img](https://github.com/naivor/Android-Adapter/blob/master/docs/Multiple%20Items.gif)
