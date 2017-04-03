@@ -1,4 +1,6 @@
-# Android-Adapter
+# Android-Adapter  
+
+<a href="http://www.methodscount.com/?lib=com.naivor%3Aadapter%3A1.0.1"><img src="https://img.shields.io/badge/Methods and size-core: 152 | deps: 21831 | 95 KB-e91e63.svg"/></a>
 
 简单易用的Android Adapter,包括RecyAdapter和ListAdapter,对于RecyclerView 和 AbsListView 提供一致的Adapter操作风格
 
