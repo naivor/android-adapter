@@ -65,13 +65,19 @@ public class TestRecyAdapter extends RecyAdapter<SimpleItem> {
 }
 
 ```
-效果
+效果：
+
+
 ![img](https://github.com/naivor/Android-Adapter/blob/master/docs/Adapter%20RecyclerView.gif)
 
 另外，RecyAdapter实现了HeaderFooter接口，支持对RecyclerView 添加Header，Footer
 
 ![HeaderFooter接口](https://github.com/naivor/Android-Adapter/blob/master/docs/HeaderFooter.png)
-效果
+
+
+效果：
+
+
 ![img](https://github.com/naivor/Android-Adapter/blob/master/docs/Recycler%20HeaderFooter.gif)
 
 ### 2. For  AbsListView,you should extends  ListAdapter
@@ -120,10 +126,12 @@ public class TestListAdapter extends ListAdapter<SimpleItem> {
 
 }
 ```
-ListView 使用效果
+ListView 使用效果：
+
 
 ![img](https://github.com/naivor/Android-Adapter/blob/master/docs/Adapter%20%20ListView.gif)
 
-GridView 使用效果
+GridView 使用效果：
+
 
 ![img](https://github.com/naivor/Android-Adapter/blob/master/docs/Adapter%20GridView.gif)
