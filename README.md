@@ -1,13 +1,13 @@
 # Android-Adapter  
 
-<a href="http://www.methodscount.com/?lib=com.naivor%3Aadapter%3A1.0.1"><img src="https://img.shields.io/badge/Methods and size-core: 152 | deps: 21831 | 95 KB-e91e63.svg"/></a>
+<a href="http://www.methodscount.com/?lib=com.naivor%3Aadapter%3A1.0.3"><img src="https://img.shields.io/badge/Methods and size-core: 171 | deps: 21831 | 96 KB-e91e63.svg"/></a>
 
 简单易用的Android Adapter,包括RecyAdapter和ListAdapter,对于RecyclerView 和 AbsListView 提供一致的Adapter操作风格
 
 ### 现在可以使用在线库：
 
 ```
-compile 'com.naivor:adapter:1.0.1'
+compile 'com.naivor:adapter:1.0.3'
 ```
 RecyAdapter和ListAdapter都实现了AdapterOperator接口，实现了对Adapter数据的添加，删除，置换，清空的操作，如图
 
@@ -46,7 +46,7 @@ public class TestRecyAdapter extends RecyAdapter<SimpleItem> {
 
             ButterKnife.bind(this, itemView);
 
-            itemView.setOnClickListener(this);
+            registerClick(itemView);
         }
 
         @Override
@@ -55,14 +55,7 @@ public class TestRecyAdapter extends RecyAdapter<SimpleItem> {
 
             tvText.setText(itemData.getContent() + "编号：" + position);
         }
-
-
-        @Override
-        public void onClick(View v) {
-            if (clickListener!=null){
-                clickListener.onClick(v,itemData,position);
-            }
-        }
+      
     }
 }
 
