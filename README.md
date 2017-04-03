@@ -2,9 +2,14 @@
 
 简单易用的Android Adapter,包括RecyAdapter和ListAdapter,对于RecyclerView 和 AbsListView 提供一致的Adapter操作风格
 
-他们都实现了AdapterOperator接口，实现了对Adapter数据的添加，删除，置换，清空的操作，如图
+### 现在可以使用在线库：
+```
+compile 'com.naivor:adapter:1.0.0'
 
-![AdapterOperator接口](http://img.blog.csdn.net/20170403095646751?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbmFpdm9y/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+```
+RecyAdapter和ListAdapter都实现了AdapterOperator接口，实现了对Adapter数据的添加，删除，置换，清空的操作，如图
+
+![AdapterOperator接口](https://github.com/naivor/Android-Adapter/blob/master/docs/AdapterOperator.png)
 
 ### 1. For RecyclerView，you should  extends  RecyAdapter
 
@@ -60,13 +65,14 @@ public class TestRecyAdapter extends RecyAdapter<SimpleItem> {
 }
 
 ```
-
+效果
+![img](https://github.com/naivor/Android-Adapter/blob/master/docs/Adapter%20RecyclerView.gif)
 
 另外，RecyAdapter实现了HeaderFooter接口，支持对RecyclerView 添加Header，Footer
 
-![HeaderFooter接口](http://img.blog.csdn.net/20170403095927236?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbmFpdm9y/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
-
-
+![HeaderFooter接口](https://github.com/naivor/Android-Adapter/blob/master/docs/HeaderFooter.png)
+效果
+![img](https://github.com/naivor/Android-Adapter/blob/master/docs/Recycler%20HeaderFooter.gif)
 
 ### 2. For  AbsListView,you should extends  ListAdapter
 
@@ -114,5 +120,10 @@ public class TestListAdapter extends ListAdapter<SimpleItem> {
 
 }
 ```
+ListView 使用效果
 
+![img](https://github.com/naivor/Android-Adapter/blob/master/docs/Adapter%20%20ListView.gif)
 
+GridView 使用效果
+
+![img](https://github.com/naivor/Android-Adapter/blob/master/docs/Adapter%20GridView.gif)
