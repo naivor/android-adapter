@@ -3,6 +3,7 @@ package com.naivor.adapter;
 import android.support.annotation.LayoutRes;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 
 import java.util.List;
 
@@ -30,7 +31,7 @@ public interface AdapterOperator<T> {
      * @return
      */
     @LayoutRes
-    int  getLayoutRes(int viewType);
+    int getLayoutRes(int viewType);
 
     /**
      * 判断数据是否为空
@@ -49,6 +50,7 @@ public interface AdapterOperator<T> {
      * @param newItem
      */
     void replaceItem(T originItem, T newItem);
+
     /**
      * 替换数据
      *
@@ -101,11 +103,20 @@ public interface AdapterOperator<T> {
     List<T> getDatas();
 
     /**
-     * 列表类的内部控件点击监听
+     * 列表类的内部控件常用事件监听
      * <p>
      * Created by tianlai on 16-7-16.
      */
-    interface InnerClickListener<T> {
-        void onClick(View view, T itemData, int postition);
+    abstract class InnerListener<T> {
+        public void onClick(View view, T itemData, int postition) {
+        }
+        public void onLongClick(View view, T itemData, int postition) {
+        }
+
+        public void onFocusChange(View view, boolean hasFocus, T itemData, int postition) {
+        }
+
+        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked, T itemData, int postition) {
+        }
     }
 }

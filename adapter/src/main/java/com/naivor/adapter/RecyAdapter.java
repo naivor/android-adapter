@@ -26,12 +26,10 @@ public abstract class RecyAdapter<T> extends RecyclerView.Adapter implements Ada
 
     protected List<T> itemDatas;
 
-    protected InnerClickListener innerClickListener;
+    protected InnerListener<T> InnerListener;
 
     private List<View> headers;
     private List<View> footers;
-
-    private ViewGroup parent;
 
     public RecyAdapter(Context context) {
         this(context, LayoutInflater.from(context));
@@ -49,6 +47,14 @@ public abstract class RecyAdapter<T> extends RecyclerView.Adapter implements Ada
     @Override
     public int getItemCount() {
         return itemDatas.size() + getHeaderCount() + getFooterCount();
+    }
+
+    public T getItem(int position) {
+        if (position < getItemCount()) {
+            return itemDatas.get(position - getHeaderCount());
+        }
+
+        return null;
     }
 
     @Override
@@ -152,8 +158,10 @@ public abstract class RecyAdapter<T> extends RecyclerView.Adapter implements Ada
     @Override
     public void addItems(List<T> list) {
         if (list != null) {
+            int start = itemDatas.size() + getHeaderCount();
             itemDatas.addAll(list);
-            notifyDataSetChanged();
+
+            notifyItemRangeInserted(start, list.size());
         }
     }
 
@@ -169,9 +177,7 @@ public abstract class RecyAdapter<T> extends RecyclerView.Adapter implements Ada
             int position = itemDatas.indexOf(originItem);
             itemDatas.set(position, newItem);
 
-//            notifyItemChanged(position);
-
-            notifyDataSetChanged();
+            notifyItemChanged(position + getHeaderCount());
         }
     }
 
@@ -186,9 +192,7 @@ public abstract class RecyAdapter<T> extends RecyclerView.Adapter implements Ada
         if (position < itemDatas.size() && position > -1) {
             itemDatas.set(position, newItem);
 
-//        notifyItemChanged(position);
-
-            notifyDataSetChanged();
+            notifyItemChanged(position+getHeaderCount());
         }
     }
 
@@ -200,7 +204,8 @@ public abstract class RecyAdapter<T> extends RecyclerView.Adapter implements Ada
     public void addItems(int position, List<T> list) {
         if (list != null) {
             itemDatas.addAll(position, list);
-            notifyDataSetChanged();
+
+            notifyItemRangeInserted(position,list.size());
         }
     }
 
@@ -210,8 +215,11 @@ public abstract class RecyAdapter<T> extends RecyclerView.Adapter implements Ada
     @Override
     public void addItem(T item) {
         if (item != null) {
+            int position=itemDatas.size()+getHeaderCount();
+
             itemDatas.add(item);
-            notifyDataSetChanged();
+
+            notifyItemInserted(position);
         }
     }
 
@@ -222,7 +230,8 @@ public abstract class RecyAdapter<T> extends RecyclerView.Adapter implements Ada
     public void addItem(int position, T item) {
         if (item != null && position >= 0) {
             itemDatas.add(position, item);
-            notifyDataSetChanged();
+
+            notifyItemInserted(position+getHeaderCount());
         }
     }
 
@@ -231,9 +240,10 @@ public abstract class RecyAdapter<T> extends RecyclerView.Adapter implements Ada
      */
     @Override
     public void removeItem(int position) {
-        if (position >= 0 && position < getItemCount()) {
+        if (position >= 0 && position < itemDatas.size()) {
 
             itemDatas.remove(position);
+
             notifyDataSetChanged();
         }
     }
@@ -248,6 +258,7 @@ public abstract class RecyAdapter<T> extends RecyclerView.Adapter implements Ada
             itemDatas.remove(data);
 
             notifyDataSetChanged();
+
         }
     }
 
@@ -260,9 +271,9 @@ public abstract class RecyAdapter<T> extends RecyclerView.Adapter implements Ada
 
         if (list != null) {
             itemDatas.addAll(list);
-
-            notifyDataSetChanged();
         }
+
+        notifyDataSetChanged();
 
     }
 
@@ -273,6 +284,7 @@ public abstract class RecyAdapter<T> extends RecyclerView.Adapter implements Ada
     public void clearItems() {
         if (!isEmpty()) {
             itemDatas.clear();
+
             notifyDataSetChanged();
         }
     }
@@ -283,12 +295,12 @@ public abstract class RecyAdapter<T> extends RecyclerView.Adapter implements Ada
     }
 
 
-    public InnerClickListener getInnerClickListener() {
-        return innerClickListener;
+    public InnerListener<T> getInnerListener() {
+        return InnerListener;
     }
 
-    public void setInnerClickListener(InnerClickListener innerClickListener) {
-        this.innerClickListener = innerClickListener;
+    public void setInnerListener(InnerListener<T> InnerListener) {
+        this.InnerListener = InnerListener;
     }
 
     /**
@@ -303,6 +315,7 @@ public abstract class RecyAdapter<T> extends RecyclerView.Adapter implements Ada
         }
 
         headers.add(header);
+
         this.notifyDataSetChanged();
     }
 

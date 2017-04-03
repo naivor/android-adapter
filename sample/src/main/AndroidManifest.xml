@@ -5,8 +5,8 @@
     <application
         android:allowBackup="true"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme"
-        android:supportsRtl="true">
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
@@ -21,7 +21,9 @@
         <activity android:name=".HeaderFooterActivity" />
         <activity android:name=".ListActivity" />
         <activity android:name=".GridActivity" />
-        <activity android:name=".RecyclerActivity"/>
+        <activity android:name=".RecyclerActivity" />
+        <activity android:name=".MultiItemActivity" />
+        <activity android:name=".ComplexActivity"></activity>
     </application>
 
 </manifest>

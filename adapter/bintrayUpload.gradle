@@ -2,7 +2,7 @@ apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 
 group = 'com.naivor'
-version = '1.0.0'
+version = '1.0.4'
 
 def siteUrl = 'https://github.com/naivor/Android-Adapter'      // 项目的主页
 def gitUrl = 'https://github.com/naivor/Android-Adapter.git'   // Git仓库的url
@@ -16,9 +16,6 @@ install {
             inceptionYear '2017'
 
             packaging 'aar'
-            groupId 'com.naivor'
-            artifactId 'android-adapter'
-            version '1.0.0'
 
             licenses {
                 license {
@@ -56,12 +53,7 @@ bintray {
         userOrg = user
         licenses = ['Apache-2.0']
         vcsUrl = gitUrl
-        version {
-            name = '1.0.0'
-            desc = 'Easy and useful Android Adapter'
-            vcsTag = '1.0.0'
-//            attributes = ['gradle-plugin': 'com.use.less:com.use.less.gradle:gradle-useless-plugin']
-        }
+        publish=true
     }
 }
 

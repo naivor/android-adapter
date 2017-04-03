@@ -33,9 +33,10 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         setSupportActionBar(toolbar);
+
     }
 
-    @OnClick({R.id.btn_list, R.id.btn_grid, R.id.btn_recycler, R.id.btn_header})
+    @OnClick({R.id.btn_list, R.id.btn_grid, R.id.btn_recycler, R.id.btn_header,R.id.btn_multi,R.id.btn_complex})
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_list:
@@ -49,6 +50,12 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.btn_header:
                 startActivity(new Intent(this, HeaderFooterActivity.class));
+                break;
+            case R.id.btn_multi:
+                startActivity(new Intent(this, MultiItemActivity.class));
+                break;
+            case R.id.btn_complex:
+                startActivity(new Intent(this, ComplexActivity.class));
                 break;
             default:
 
