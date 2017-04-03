@@ -51,6 +51,14 @@ public abstract class RecyAdapter<T> extends RecyclerView.Adapter implements Ada
         return itemDatas.size() + getHeaderCount() + getFooterCount();
     }
 
+    public T getItem(int position) {
+        if (position < getItemCount()) {
+            return itemDatas.get(position - getHeaderCount());
+        }
+
+        return null;
+    }
+
     @Override
     public final RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 

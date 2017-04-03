@@ -25,6 +25,8 @@ public class SimpleItem {
 
     private String content;
 
+    private int type;
+
     public int getId() {
         return id;
     }
@@ -41,11 +43,27 @@ public class SimpleItem {
         this.content = content;
     }
 
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+
+    public static interface Type {
+        int A = 0;
+        int B = 1;
+        int S = 2;
+
+    }
+
     @Override
     public String toString() {
         return "SimpleItem{" +
                 "id=" + id +
                 ", content='" + content + '\'' +
+                ", type=" + type +
                 '}';
     }
 }
