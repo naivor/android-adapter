@@ -1,0 +1,70 @@
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.jfrog.bintray'
+
+group = 'com.naivor'
+version = '1.0.0'
+
+def siteUrl = 'https://github.com/naivor/Android-Adapter'      // 项目的主页
+def gitUrl = 'https://github.com/naivor/Android-Adapter.git'   // Git仓库的url
+
+install {
+    repositories.mavenInstaller {
+        pom.project {
+            name 'AndroidAdapter'
+            description 'Easy and useful Android Adapter'
+            url siteUrl
+            inceptionYear '2017'
+
+            packaging 'aar'
+            groupId 'com.naivor'
+            artifactId 'android-adapter'
+            version '1.0.0'
+
+            licenses {
+                license {
+                    name 'The Apache Software License, Version 2.0'
+                    url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    distribution 'repo'
+                }
+            }
+            scm {
+                connection gitUrl
+                url siteUrl
+
+            }
+            developers {
+                    developer {
+                        id 'naivor'     //填写的一些基本信息
+                        name 'naivor'
+                        email 'naivortang@gmail.com'
+                    }
+                }
+        }
+    }
+}
+
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+bintray {
+    user = properties.getProperty("bintray.user")
+    key = properties.getProperty("bintray.apikey")
+    configurations = ['archives']
+    pkg {
+        repo = 'maven'
+        name = 'android-adapter'
+        userOrg = user
+        licenses = ['Apache-2.0']
+        vcsUrl = gitUrl
+        version {
+            name = '1.0.0'
+            desc = 'Easy and useful Android Adapter'
+            vcsTag = '1.0.0'
+//            attributes = ['gradle-plugin': 'com.use.less:com.use.less.gradle:gradle-useless-plugin']
+        }
+    }
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '3.4'
+}
