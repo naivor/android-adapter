@@ -24,7 +24,7 @@ public abstract class ListAdapter<T> extends BaseAdapter implements AdapterOpera
 
     private ListHolder<T> viewHolder;
 
-    protected AdapterOperator.InnerClickListener innerClickListener;
+    protected InnerListener<T> InnerListener;
 
     public ListAdapter(Context context) {
         this(context, LayoutInflater.from(context));
@@ -240,12 +240,12 @@ public abstract class ListAdapter<T> extends BaseAdapter implements AdapterOpera
     }
 
 
-    public InnerClickListener getInnerClickListener() {
-        return innerClickListener;
+    public InnerListener<T> getInnerListener() {
+        return InnerListener;
     }
 
-    public void setInnerClickListener(InnerClickListener innerClickListener) {
-        this.innerClickListener = innerClickListener;
+    public void setInnerListener(InnerListener<T> InnerListener) {
+        this.InnerListener = InnerListener;
     }
 
 }

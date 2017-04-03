@@ -42,7 +42,7 @@ public class MultiItemActivity extends AppCompatActivity {
         });
 
         adapter = new MultiRecyAdapter(getApplicationContext());
-        adapter.setInnerClickListener(new AdapterOperator.InnerClickListener<SimpleItem>() {
+        adapter.setInnerListener(new AdapterOperator.InnerListener<SimpleItem>() {
             @Override
             public void onClick(View view, SimpleItem itemData, int postition) {
                 Toast.makeText(getApplicationContext(),"我是编号："+postition+"  "+itemData.getContent(),Toast.LENGTH_SHORT).show();

@@ -26,7 +26,7 @@ public abstract class RecyAdapter<T> extends RecyclerView.Adapter implements Ada
 
     protected List<T> itemDatas;
 
-    protected InnerClickListener innerClickListener;
+    protected InnerListener<T> InnerListener;
 
     private List<View> headers;
     private List<View> footers;
@@ -291,12 +291,12 @@ public abstract class RecyAdapter<T> extends RecyclerView.Adapter implements Ada
     }
 
 
-    public InnerClickListener getInnerClickListener() {
-        return innerClickListener;
+    public InnerListener<T> getInnerListener() {
+        return InnerListener;
     }
 
-    public void setInnerClickListener(InnerClickListener innerClickListener) {
-        this.innerClickListener = innerClickListener;
+    public void setInnerListener(InnerListener<T> InnerListener) {
+        this.InnerListener = InnerListener;
     }
 
     /**

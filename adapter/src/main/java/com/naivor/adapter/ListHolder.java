@@ -2,6 +2,7 @@ package com.naivor.adapter;
 
 import android.content.Context;
 import android.view.View;
+import android.widget.CompoundButton;
 
 
 /**
@@ -9,7 +10,8 @@ import android.view.View;
  *
  * Created by naivor on 16-4-12.
  */
-public abstract class ListHolder<T> implements HolderOperator<T>{
+public abstract class ListHolder<T> implements HolderOperator<T>, View.OnClickListener,
+        View.OnFocusChangeListener, CompoundButton.OnCheckedChangeListener{
     protected  final String TAG=this.getClass().getSimpleName();
 
     protected Context context;
@@ -20,7 +22,7 @@ public abstract class ListHolder<T> implements HolderOperator<T>{
     protected T itemData;
     protected ListAdapter adapter;
 
-    protected AdapterOperator.InnerClickListener clickListener;
+    protected AdapterOperator.InnerListener<T> innerListener;
 
     public ListHolder(View convertView) {
         this.itemView = convertView;
@@ -50,7 +52,7 @@ public abstract class ListHolder<T> implements HolderOperator<T>{
         }
 
         if (adapter != null) {
-            clickListener = adapter.getInnerClickListener();
+            innerListener = adapter.getInnerListener();
         }
     }
 
@@ -78,4 +80,57 @@ public abstract class ListHolder<T> implements HolderOperator<T>{
 
     }
 
+    @Override
+    public void onClick(View v) {
+        if (innerListener != null) {
+            innerListener.onClick(v, itemData, position);
+        }
+    }
+
+    @Override
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        if (innerListener != null) {
+            innerListener.onCheckedChanged(buttonView, isChecked, itemData, position);
+        }
+    }
+
+    @Override
+    public void onFocusChange(View v, boolean hasFocus) {
+        if (innerListener != null) {
+            innerListener.onFocusChange(v, hasFocus, itemData, position);
+        }
+    }
+
+    /**
+     * 注册Click事件
+     */
+    protected void registerClick(View v) {
+        if (v == null) {
+            throw new NullPointerException("View can't be null");
+        }
+
+        v.setOnClickListener(this);
+    }
+
+    /**
+     * 注册Focus事件
+     */
+    protected void registerFocusChange(View v) {
+        if (v == null) {
+            throw new NullPointerException("View can't be null");
+        }
+
+        v.setOnFocusChangeListener(this);
+    }
+
+    /**
+     * 注册Check事件
+     */
+    protected void registerCheckedChanged(CompoundButton v) {
+        if (v == null) {
+            throw new NullPointerException("View can't be null");
+        }
+
+        v.setOnCheckedChangeListener(this);
+    }
 }

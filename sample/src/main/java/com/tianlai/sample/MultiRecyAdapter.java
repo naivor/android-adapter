@@ -76,7 +76,7 @@ public class MultiRecyAdapter extends RecyAdapter<SimpleItem> {
     }
 
 
-    static class SHolder extends RecyHolder<SimpleItem> implements View.OnClickListener {
+    static class SHolder extends RecyHolder<SimpleItem> {
 
         @Bind(R.id.tv_text)
         TextView tvText;
@@ -86,7 +86,7 @@ public class MultiRecyAdapter extends RecyAdapter<SimpleItem> {
 
             ButterKnife.bind(this, itemView);
 
-            itemView.setOnClickListener(this);
+            registerClick(itemView);
         }
 
         @Override
@@ -97,12 +97,6 @@ public class MultiRecyAdapter extends RecyAdapter<SimpleItem> {
         }
 
 
-        @Override
-        public void onClick(View v) {
-            if (clickListener != null) {
-                clickListener.onClick(v, itemData, position);
-            }
-        }
     }
 
     static class AHolder extends RecyHolder<SimpleItem> implements View.OnClickListener {
@@ -119,7 +113,7 @@ public class MultiRecyAdapter extends RecyAdapter<SimpleItem> {
 
             ButterKnife.bind(this, itemView);
 
-            itemView.setOnClickListener(this);
+            registerClick(itemView);
         }
 
         @Override
@@ -131,12 +125,6 @@ public class MultiRecyAdapter extends RecyAdapter<SimpleItem> {
             tvText3.setText(itemData.getContent());
         }
 
-        @Override
-        public void onClick(View v) {
-            if (clickListener != null) {
-                clickListener.onClick(v, itemData, position);
-            }
-        }
     }
 
     static class BHolder extends RecyHolder<SimpleItem> implements View.OnClickListener {
@@ -153,7 +141,7 @@ public class MultiRecyAdapter extends RecyAdapter<SimpleItem> {
 
             ButterKnife.bind(this, itemView);
 
-            itemView.setOnClickListener(this);
+            registerClick(itemView);
         }
 
         @Override
@@ -165,12 +153,6 @@ public class MultiRecyAdapter extends RecyAdapter<SimpleItem> {
             tvText3.setText(itemData.getContent());
         }
 
-        @Override
-        public void onClick(View v) {
-            if (clickListener != null) {
-                clickListener.onClick(v, itemData, position);
-            }
-        }
     }
 
 }
