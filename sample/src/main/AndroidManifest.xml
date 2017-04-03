@@ -22,7 +22,8 @@
         <activity android:name=".ListActivity" />
         <activity android:name=".GridActivity" />
         <activity android:name=".RecyclerActivity" />
-        <activity android:name=".MultiItemActivity"></activity>
+        <activity android:name=".MultiItemActivity" />
+        <activity android:name=".ComplexActivity"></activity>
     </application>
 
 </manifest>

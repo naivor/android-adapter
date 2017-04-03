@@ -44,6 +44,14 @@
         android:layout_width="match_parent"
         android:layout_height="60sp"
         android:text="Recycler   HeaderFooter" />
+    <Button
+        android:id="@+id/btn_complex"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="60sp"
+        android:text="Complex  Adapter" />
 
     <Button
         android:id="@+id/btn_multi"
@@ -53,5 +61,7 @@
         android:layout_width="match_parent"
         android:layout_height="60sp"
         android:text="Multiple   Items" />
+
+
 
 </LinearLayout>
