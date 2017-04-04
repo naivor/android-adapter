@@ -9,4 +9,4 @@ android:
         - tools
 
 
-script: ./gradlew build bintrayUpload -PbintrayUser=naivor -PbintrayKey=0cbed428ebc41a02e05c1cae1e4e78a6707da450 -PdryRun=false 
+script: ./gradlew build bintrayUpload  

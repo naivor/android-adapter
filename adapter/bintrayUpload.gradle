@@ -30,22 +30,21 @@ install {
 
             }
             developers {
-                    developer {
-                        id 'naivor'     //填写的一些基本信息
-                        name 'naivor'
-                        email 'naivortang@gmail.com'
-                    }
+                developer {
+                    id 'naivor'     //填写的一些基本信息
+                    name 'naivor'
+                    email 'naivortang@gmail.com'
                 }
+            }
         }
     }
 }
 
-Properties properties = new Properties()
-properties.load(project.rootProject.file('local.properties').newDataInputStream())
 
 bintray {
-    user = properties.getProperty("bintray.user")
-    key = properties.getProperty("bintray.apikey")
+    user = project.hasProperty('BINTRAY_USER') ? project.BINTRAY_USER : System.getenv('BINTRAY_USER')
+    key = project.hasProperty('BINTRAY_KEY') ? project.BINTRAY_KEY : System.getenv('BINTRAY_KEY')
+
     configurations = ['archives']
     pkg {
         repo = 'maven'
@@ -53,7 +52,7 @@ bintray {
         userOrg = user
         licenses = ['Apache-2.0']
         vcsUrl = gitUrl
-        publish=true
+        publish = true
     }
 }
 
