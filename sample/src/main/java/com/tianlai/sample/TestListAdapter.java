@@ -2,7 +2,6 @@ package com.tianlai.sample;
 
 import android.content.Context;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.naivor.adapter.AdapterOperator;
@@ -24,13 +23,13 @@ public class TestListAdapter extends ListAdapter<SimpleItem> {
     /**
      * 创建viewholder
      *
-     * @param parent
+     * @param view
      * @param viewType
      * @return
      */
     @Override
-    public ListHolder<SimpleItem> onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new HomeViewHolder(createView(parent, viewType));
+    public ListHolder<SimpleItem> onCreateViewHolder(View view, int viewType) {
+        return new HomeViewHolder(view);
     }
 
     /**

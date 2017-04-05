@@ -71,18 +71,20 @@ public abstract class RecyAdapter<T> extends RecyclerView.Adapter implements Ada
             return new ViewHolder(footers.get(TYPE_FOOTER - viewType - headerCount - realCount));
         }
 
-        return createHolder(parent, viewType - Integer.MAX_VALUE / 2);
+        int type = viewType - Integer.MAX_VALUE / 2;
+
+        return createHolder(createView(parent,type), type);
 
     }
 
     /**
      * 创建viewholder
      *
-     * @param parent
+     * @param itemView
      * @param viewType
      * @return
      */
-    public abstract RecyclerView.ViewHolder createHolder(ViewGroup parent, int viewType);
+    public abstract RecyclerView.ViewHolder createHolder(View itemView, int viewType);
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {

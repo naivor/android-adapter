@@ -60,7 +60,8 @@ public abstract class ListAdapter<T> extends BaseAdapter implements AdapterOpera
     public View getView(int position, View convertView, ViewGroup parent) {
 
         if (convertView == null) {
-            viewHolder = onCreateViewHolder(parent, getItemViewType(position));
+            int itemViewType = getItemViewType(position);
+            viewHolder = onCreateViewHolder(createView(parent, itemViewType), itemViewType);
             convertView = viewHolder.getConvertView();
             convertView.setTag(viewHolder);
         } else {
@@ -85,11 +86,11 @@ public abstract class ListAdapter<T> extends BaseAdapter implements AdapterOpera
     /**
      * 创建viewholder
      *
-     * @param parent
+     * @param itemView
      * @param viewType
      * @return
      */
-    public abstract ListHolder<T> onCreateViewHolder(ViewGroup parent, int viewType);
+    public abstract ListHolder<T> onCreateViewHolder(View itemView, int viewType);
 
     @Override
     public View createView(ViewGroup parent, int viewType) {

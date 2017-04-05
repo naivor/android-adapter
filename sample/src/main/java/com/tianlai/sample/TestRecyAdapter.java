@@ -3,13 +3,11 @@ package com.tianlai.sample;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.naivor.adapter.AdapterOperator;
 import com.naivor.adapter.RecyAdapter;
 import com.naivor.adapter.RecyHolder;
-
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -30,13 +28,13 @@ public class TestRecyAdapter extends RecyAdapter<SimpleItem> {
     /**
      * 创建viewholder,需要重写
      *
-     * @param parent
+     * @param view
      * @param viewType
      * @return
      */
     @Override
-    public RecyclerView.ViewHolder createHolder(ViewGroup parent, int viewType) {
-        return new SHolder(createView(parent, viewType));
+    public RecyclerView.ViewHolder createHolder(View view, int viewType) {
+        return new SHolder(view);
     }
 
     /**
