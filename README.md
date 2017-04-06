@@ -7,7 +7,7 @@
 ### 现在可以使用在线库：
 
 ```
-compile 'com.naivor:adapter:1.0.4'
+compile 'com.naivor:adapter:1.0.5'
 ```
 RecyAdapter和ListAdapter都实现了AdapterOperator接口，实现了对Adapter数据的添加，删除，置换，清空的操作，如图
 
@@ -27,8 +27,8 @@ public class TestRecyAdapter extends RecyAdapter<SimpleItem> {
 
 
     @Override
-    public RecyclerView.ViewHolder createHolder(ViewGroup parent, int viewType) {
-        return new SHolder(createView(parent, viewType));
+    public RecyclerView.ViewHolder createHolder(View itemview, int viewType) {
+        return new SHolder(itemview);
     }
 
     @Override
@@ -88,8 +88,8 @@ public class TestListAdapter extends ListAdapter<SimpleItem> {
 
    
     @Override
-    public ListHolder<SimpleItem> onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new HomeViewHolder(createView(parent, viewType));
+    public ListHolder<SimpleItem> onCreateViewHolder(View itemview, int viewType) {
+        return new HomeViewHolder(itemview);
     }
 
   
@@ -143,16 +143,15 @@ static class SHolder extends RecyHolder<SimpleItem> implements View.OnClickListe
 
 ```
  @Override
-    public RecyclerView.ViewHolder createHolder(ViewGroup parent, int viewType) {
-        View view = createView(parent, viewType);
+    public RecyclerView.ViewHolder createHolder(View itemview, int viewType) {
 
         switch (viewType) {
             case SimpleItem.Type.A:
-                return new AHolder(view);
+                return new AHolder(itemview);
             case SimpleItem.Type.B:
-                return new BHolder(view);
+                return new BHolder(itemview);
             case SimpleItem.Type.S:
-                return new SHolder(view);
+                return new SHolder(itemview);
             default:
                 return null;
         }
