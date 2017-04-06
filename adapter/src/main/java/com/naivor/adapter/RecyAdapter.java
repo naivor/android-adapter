@@ -104,7 +104,7 @@ public abstract class RecyAdapter<T> extends RecyclerView.Adapter implements Ada
 
 
         } else {
-            ((RecyHolder<T>) holder).bindData(this, position, itemDatas.get(position - getHeaderCount()));
+            ((RecyHolder<T>) holder).bindData(this, position, getItem(position));
         }
     }
 
