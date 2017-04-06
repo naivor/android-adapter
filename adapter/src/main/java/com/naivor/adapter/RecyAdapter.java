@@ -480,7 +480,7 @@ public abstract class RecyAdapter<T> extends RecyclerView.Adapter implements Ada
      */
     @Override
     public boolean isFooter(int position) {
-        return getItemCount() - getFooterCount() - 1 < position && position > 0;
+        return getItemCount() - getFooterCount() - 1 < position && position >= 0;
     }
 
     /**
