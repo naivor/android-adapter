@@ -1,6 +1,7 @@
 package com.naivor.adapter;
 
 import android.content.Context;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
@@ -73,8 +74,37 @@ public abstract class RecyAdapter<T> extends RecyclerView.Adapter implements Ada
 
         int type = viewType - Integer.MAX_VALUE / 2;
 
-        return createHolder(createView(parent,type), type);
+        return createHolder(createView(parent, type), type);
 
+    }
+
+    @Override
+    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
+        super.onAttachedToRecyclerView(recyclerView);
+
+        RecyclerView.LayoutManager manager = recyclerView.getLayoutManager();
+        if (manager instanceof GridLayoutManager) {
+            final GridLayoutManager gridManager = ((GridLayoutManager) manager);
+            gridManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+                @Override
+                public int getSpanSize(int position) {
+                    return (isHeader(position) || isFooter(position))
+                            ? gridManager.getSpanCount() : 1;
+                }
+            });
+        }
+    }
+
+    @Override
+    public void onViewAttachedToWindow(RecyclerView.ViewHolder holder) {
+        super.onViewAttachedToWindow(holder);
+        ViewGroup.LayoutParams lp = holder.itemView.getLayoutParams();
+        if (lp != null
+                && lp instanceof StaggeredGridLayoutManager.LayoutParams
+                && (isHeader(holder.getLayoutPosition()) || isFooter(holder.getLayoutPosition()))) {
+            StaggeredGridLayoutManager.LayoutParams p = (StaggeredGridLayoutManager.LayoutParams) lp;
+            p.setFullSpan(true);
+        }
     }
 
     /**
@@ -89,17 +119,16 @@ public abstract class RecyAdapter<T> extends RecyclerView.Adapter implements Ada
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (isHeader(position) || isFooter(position)) {
+
             ViewGroup.LayoutParams layoutParams = holder.itemView.getLayoutParams();
 
             if (layoutParams == null) {
                 RecyclerView.LayoutParams params = new RecyclerView.LayoutParams(
-                        ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                        ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                 params.bottomMargin = 1;
                 params.topMargin = 1;
                 holder.itemView.setLayoutParams(params);
 
-            } else if (layoutParams instanceof StaggeredGridLayoutManager.LayoutParams) {
-                ((StaggeredGridLayoutManager.LayoutParams) layoutParams).setFullSpan(true);
             }
 
 
@@ -194,7 +223,7 @@ public abstract class RecyAdapter<T> extends RecyclerView.Adapter implements Ada
         if (position < itemDatas.size() && position > -1) {
             itemDatas.set(position, newItem);
 
-            notifyItemChanged(position+getHeaderCount());
+            notifyItemChanged(position + getHeaderCount());
         }
     }
 
@@ -207,7 +236,7 @@ public abstract class RecyAdapter<T> extends RecyclerView.Adapter implements Ada
         if (list != null) {
             itemDatas.addAll(position, list);
 
-            notifyItemRangeInserted(position,list.size());
+            notifyItemRangeInserted(position, list.size());
         }
     }
 
@@ -217,7 +246,7 @@ public abstract class RecyAdapter<T> extends RecyclerView.Adapter implements Ada
     @Override
     public void addItem(T item) {
         if (item != null) {
-            int position=itemDatas.size()+getHeaderCount();
+            int position = itemDatas.size() + getHeaderCount();
 
             itemDatas.add(item);
 
@@ -233,7 +262,7 @@ public abstract class RecyAdapter<T> extends RecyclerView.Adapter implements Ada
         if (item != null && position >= 0) {
             itemDatas.add(position, item);
 
-            notifyItemInserted(position+getHeaderCount());
+            notifyItemInserted(position + getHeaderCount());
         }
     }
 

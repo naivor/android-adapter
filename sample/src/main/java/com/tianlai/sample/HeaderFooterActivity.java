@@ -2,10 +2,13 @@ package com.tianlai.sample;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -63,7 +66,7 @@ public class HeaderFooterActivity extends AppCompatActivity {
 
         adapter = new TestRecyAdapter(getApplicationContext());
 
-        rvContent.setLayoutManager(new LinearLayoutManager(this));
+        rvContent.setLayoutManager(new GridLayoutManager(this, 2));
         rvContent.setAdapter(adapter);
 
         loadData();
@@ -119,6 +122,30 @@ public class HeaderFooterActivity extends AppCompatActivity {
         View view = inflater.inflate(R.layout.list_item_txt, null);
         ((TextView) find(view, R.id.tv_text)).setText("我是尾部");
         return view;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.layout_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.m_ll:
+                rvContent.setLayoutManager(new LinearLayoutManager(this));
+                break;
+            case R.id.m_gl:
+                rvContent.setLayoutManager(new GridLayoutManager(this, 2));
+                break;
+            default:
+                break;
+        }
+
+        rvContent.setAdapter(adapter);
+
+        return true;
     }
 
     /**
