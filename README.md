@@ -7,7 +7,7 @@
 ### 现在可以使用在线库：
 
 ```
-compile 'com.naivor:adapter:1.0.5'
+compile 'com.naivor:adapter:1.0.8'
 ```
 RecyAdapter和ListAdapter都实现了AdapterOperator接口，实现了对Adapter数据的添加，删除，置换，清空的操作，如图
 
