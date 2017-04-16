@@ -187,7 +187,54 @@ static class SHolder extends RecyHolder<SimpleItem> implements View.OnClickListe
 
 ![img](https://github.com/naivor/Android-Adapter/blob/master/docs/Multiple%20Items.gif)
 
+### 4. ItemView Event
 
+ItemView 中的事件默认通过InnerListener回调到Activity或Fragment中处理，InnerListener默认提供了四种事件处理：
+```
+abstract class InnerListener<T> {
+        public void onClick(View view, T itemData, int postition) {
+        }
+        public void onLongClick(View view, T itemData, int postition) {
+        }
+
+        public void onFocusChange(View view, boolean hasFocus, T itemData, int postition) {
+        }
+
+        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked, T itemData, int postition) {
+        }
+    }
+```
+需要对某个view进行事件监听只需要注册相应的事件：
+```
+registerClick(View v)；
+registerLongClick(View v)；
+registerFocusChange(View v)；
+registerCheckedChanged(CompoundButton v)
+```
+然后在Activity或Fragment中处理，也可以在ViewHolder中重写
+```
+     @Override
+    public void onClick(View v) {
+        //TODO 事件处理
+    }
+
+    @Override
+    public boolean onLongClick(View v) {
+        //TODO 事件处理
+        return true;
+    }
+
+    @Override
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+       //TODO 事件处理
+    }
+
+    @Override
+    public void onFocusChange(View v, boolean hasFocus) {
+        //TODO 事件处理
+    }
+```
+直接对事件进行处理。
 
 License
 =========
