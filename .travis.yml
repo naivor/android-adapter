@@ -9,4 +9,4 @@ android:
         - tools
 
 
-script: ./gradlew build bintrayUpload  
+script: ./gradlew build 
