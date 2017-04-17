@@ -3,10 +3,16 @@ android:
   components:
         -build-tools-25.0.2
         -android-25
-        - add-on
-        - extra
+
+        - extra-android-m2repository
+        - extra-android-support
+
         - platform-tools
         - tools
 
+        - add-on
+        - extra
 
-script: ./gradlew build 
+
+script:
+    - "./gradlew build"
