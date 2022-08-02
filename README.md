@@ -2,6 +2,12 @@
 
 <a href="http://www.methodscount.com/?lib=com.naivor%3Aadapter%3A1.0.4"><img src="https://img.shields.io/badge/Methods and size-core: 180 | deps: 21831 | 97 KB-e91e63.svg"/></a>
 
+
+
+此项目已经废弃，最新项目为   https://github.com/naivor/recycler-adapter
+
+----------------------
+
 简单易用的Android Adapter,包括RecyAdapter和ListAdapter,对于RecyclerView 和 AbsListView 提供一致的Adapter操作风格
 
 ### 现在可以使用在线库：
@@ -240,13 +246,13 @@ License
 =========
 
     Copyright (c) 2017. Naivor.All rights reserved. 
-
+    
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
     You may obtain a copy of the License at
-
+    
       http://www.apache.org/licenses/LICENSE-2.0
-
+    
     Unless required by applicable law or agreed to in writing, software
     distributed under the License is distributed on an "AS IS" BASIS,
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
